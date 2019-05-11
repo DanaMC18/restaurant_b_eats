@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190511212507) do
+ActiveRecord::Schema.define(version: 20190511223802) do
 
   create_table "cuisines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "description"
@@ -22,6 +22,49 @@ ActiveRecord::Schema.define(version: 20190511212507) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "inspections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "inspection_type_id",           null: false
+    t.integer  "restaurant_id",                null: false
+    t.integer  "score"
+    t.string   "grade",              limit: 1
+    t.date     "grade_date"
+    t.date     "inspection_date",              null: false
+    t.date     "record_date",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["grade"], name: "index_inspections_on_grade", using: :btree
+    t.index ["grade_date"], name: "index_inspections_on_grade_date", using: :btree
+    t.index ["inspection_type_id"], name: "index_inspections_on_inspection_type_id", using: :btree
+    t.index ["restaurant_id"], name: "index_inspections_on_restaurant_id", using: :btree
+    t.index ["score"], name: "index_inspections_on_score", using: :btree
+  end
+
+  create_table "restaurants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "camis",           null: false
+    t.string   "dba",             null: false
+    t.integer  "cuisine_id",      null: false
+    t.string   "building_number", null: false
+    t.string   "street",          null: false
+    t.string   "boro",            null: false
+    t.integer  "zipcode",         null: false
+    t.integer  "phone_number",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["camis"], name: "index_restaurants_on_camis", using: :btree
+    t.index ["cuisine_id"], name: "index_restaurants_on_cuisine_id", using: :btree
+    t.index ["dba"], name: "index_restaurants_on_dba", using: :btree
+  end
+
+  create_table "violations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "code",        limit: 3,                 null: false
+    t.string   "description",                           null: false
+    t.boolean  "is_critical",           default: false, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["code"], name: "index_violations_on_code", using: :btree
+    t.index ["is_critical"], name: "index_violations_on_is_critical", using: :btree
   end
 
 end
