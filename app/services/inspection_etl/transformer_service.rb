@@ -14,6 +14,7 @@ class InspectionEtl::TransformerService
 
     if new_inspection && violation_exists?
       new_inspection.violations << violation
+      new_inspection.save
     end
   end
 

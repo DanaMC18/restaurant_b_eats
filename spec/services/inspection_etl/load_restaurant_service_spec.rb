@@ -3,10 +3,11 @@ describe InspectionEtl::LoadRestaurantService do
   describe ".load" do
     context "attributes do not match an existing restaurant" do
       it "creates a new restaurant" do
-        attributes = {
+        cuisine     = create(:cuisine)
+        attributes  = {
           camis:            3007890,
           dba:              "Paul Hollywood Breads",
-          cuisine_desc:     "bread",
+          cuisine_desc:     cuisine.description,
           building_number:  "123",
           street:           "Perfectly Prooved Way",
           boro:             "Manhattan",
@@ -17,6 +18,7 @@ describe InspectionEtl::LoadRestaurantService do
         expect(Restaurant.exists?(attributes.except(:cuisine_desc))).to be false
         InspectionEtl::LoadRestaurantService.load(attributes)
         expect(Restaurant.exists?(attributes.except(:cuisine_desc))).to be true
+        expect(Restaurant.find_by_camis(attributes[:camis]).cuisine).to eq cuisine
       end
     end
 
