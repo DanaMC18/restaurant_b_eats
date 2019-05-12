@@ -1,4 +1,6 @@
 class Violation < ActiveRecord::Base
+  has_and_belongs_to_many :inspections
+
   validates_presence_of :code, :description, :is_critical
   validates_length_of :code, maximum: 3
 
