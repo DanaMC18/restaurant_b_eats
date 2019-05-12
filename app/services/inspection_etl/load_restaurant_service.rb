@@ -1,3 +1,4 @@
+# Finds or creates Cuisine; finds or creates Restaurant; returns Restaurant
 class InspectionEtl::LoadRestaurantService
 
   def self.load(attributes)

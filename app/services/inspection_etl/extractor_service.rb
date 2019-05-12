@@ -1,3 +1,4 @@
+# Read CSV file to transform each row and create data
 class InspectionEtl::ExtractorService
   attr_reader :inspections
 

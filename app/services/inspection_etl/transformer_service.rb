@@ -1,3 +1,4 @@
+# Parses CSV row (expected as a hash) into groups of attributes; creates data
 class InspectionEtl::TransformerService
 
   def self.transform(inspection)
@@ -11,7 +12,7 @@ class InspectionEtl::TransformerService
   def transform
     new_inspection = InspectionEtl::LoadInspectionService.load(inspection_attributes)
 
-    if new_inspection && violation.present?
+    if new_inspection && violation_exists?
       new_inspection.violations << violation
     end
   end
@@ -47,6 +48,10 @@ class InspectionEtl::TransformerService
       zipcode:          inspection["ZIPCODE"],
       phone_number:     inspection["PHONE"]
     }
+  end
+
+  def violation_exists?
+    violation_attributes.values.all?(&:present?)
   end
 
   def violation
