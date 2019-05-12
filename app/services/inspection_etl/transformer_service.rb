@@ -23,7 +23,7 @@ class InspectionEtl::TransformerService
   def inspection_attributes
     {
       restaurant_id:      restaurant.id,
-      inspection_type:    inspection["INSPECTION TYPE"],
+      inspection_desc:    inspection["INSPECTION TYPE"],
       score:              inspection["SCORE"].to_i.nonzero?,
       grade:              inspection["GRADE"].presence,
       grade_date:         inspection["GRADE DATE"].try(:to_date),
@@ -40,7 +40,7 @@ class InspectionEtl::TransformerService
     {
       camis:            inspection["CAMIS"],
       dba:              inspection["DBA"],
-      cuisine:          inspection["CUISINE DESCRIPTION"],
+      cuisine_desc:     inspection["CUISINE DESCRIPTION"],
       building_number:  inspection["BUILDING"],
       street:           inspection["STREET"],
       boro:             inspection["BORO"],

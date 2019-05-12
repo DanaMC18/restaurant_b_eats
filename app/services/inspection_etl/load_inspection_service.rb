@@ -10,7 +10,7 @@ class InspectionEtl::LoadInspectionService
 
   def create_inspection
     attributes[:inspection_type] = find_or_create_inspection_type
-    Inspection.create!(attributes)
+    Inspection.create!(attributes.except(:inspection_desc))
   end
 
   private
@@ -18,7 +18,7 @@ class InspectionEtl::LoadInspectionService
   attr_reader :attributes
 
   def find_or_create_inspection_type
-    InspectionType.where(description: attributes[:inspection_type]).first_or_create
+    InspectionType.where(description: attributes[:inspection_desc]).first_or_create
   end
 
 end
