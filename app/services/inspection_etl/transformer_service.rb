@@ -14,7 +14,6 @@ class InspectionEtl::TransformerService
 
     if new_inspection && violation_exists?
       new_inspection.violations << violation
-      new_inspection.save
     end
   end
 
@@ -52,7 +51,7 @@ class InspectionEtl::TransformerService
   end
 
   def violation_exists?
-    violation_attributes.values.all?(&:present?)
+    violation_attributes.values.none?(&:nil?)
   end
 
   def violation
@@ -61,9 +60,9 @@ class InspectionEtl::TransformerService
 
   def violation_attributes
     {
-      code:         inspection["VIOLATION CODE"],
-      description:  inspection["VIOLATION DESCRIPTION"],
-      is_critical:  inspection["CRITICAL FLAG"]
+      code:         inspection["VIOLATION CODE"].presence,
+      description:  inspection["VIOLATION DESCRIPTION"].presence,
+      is_critical:  inspection["CRITICAL FLAG"] == "Critical"
     }
   end
 end
