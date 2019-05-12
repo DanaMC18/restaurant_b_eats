@@ -12,4 +12,18 @@ describe InspectionEtl::LoadViolationService do
       expect(Violation.exists?(attributes)).to be true
     end
   end
+
+  context "attributes match an existing violation" do
+    it "returns the existing violation" do
+      violation   = create(:violation)
+      attributes  = {
+        code:         violation.code,
+        description:  violation.description,
+        is_critical:  violation.is_critical
+      }
+
+      expect(Violation.exists?(attributes)).to be true
+      expect(InspectionEtl::LoadViolationService.load(attributes)).to eq violation
+    end
+  end
 end
