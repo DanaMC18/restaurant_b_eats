@@ -1,4 +1,4 @@
-# Finds or creates an InspectionType; creates an Inspection; returns Inspection
+# Finds or creates an InspectionType; creates Inspection; returns Inspection
 class InspectionEtl::LoadInspectionService
 
   def self.load(attributes)
