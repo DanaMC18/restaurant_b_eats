@@ -2,7 +2,7 @@ describe InspectionEtl::LoadViolationService do
   context "attributes do not match an existing violation" do
     it "creates a new violation" do
       attributes = {
-        code:         "12A",
+        code:         "123",
         description:  "What was that smell?",
         is_critical:  true
       }
@@ -19,7 +19,7 @@ describe InspectionEtl::LoadViolationService do
       attributes  = {
         code:         violation.code,
         description:  violation.description,
-        is_critical:  violation.is_critical
+        is_critical:  violation.critical?
       }
 
       expect(Violation.exists?(attributes)).to be true
