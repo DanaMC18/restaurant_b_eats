@@ -16,4 +16,9 @@ class Restaurant < ActiveRecord::Base
     "#{building_number} #{street}, #{boro}, #{zipcode}"
   end
 
+  def self.search_by_cuisine_description(cuisine_desc)
+    cuisine_ids = Cuisine.where("description like ?", "%#{cuisine_desc}%")
+    where(cuisine_id: cuisine_ids)
+  end
+
 end
