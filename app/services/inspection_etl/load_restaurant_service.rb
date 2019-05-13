@@ -12,7 +12,7 @@ class InspectionEtl::LoadRestaurantService
   def find_or_create_restaurant
     attributes[:cuisine] = find_or_create_cuisine
 
-    Restaurant.where(attributes.except(:cuisine_desc)).first_or_create
+    Restaurant.where(attributes.except(:cuisine_desc)).first_or_create!
   end
 
   private

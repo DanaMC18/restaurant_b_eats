@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module RestaurantBEats
   class Application < Rails::Application
+    require 'csv'
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
