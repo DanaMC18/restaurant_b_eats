@@ -13,7 +13,7 @@ class Builders::Restaurants::ByCuisineAndMinGradeBuilder
   end
 
   def initialize(cuisine, grade)
-    @cuisine_desc = cuisine
+    @cuisine_desc = cuisine || ""
     @grade        = grade
   end
 
@@ -26,10 +26,14 @@ class Builders::Restaurants::ByCuisineAndMinGradeBuilder
   private
 
   def grades_greater_than_or_equal
-    return "" if grade.nil?
+    return valid_grades if grade.nil?
 
-    index = Inspection::VALID_GRADES.find_index(grade.upcase)
-    Inspection::VALID_GRADES.first(index + 1)
+    index = valid_grades.find_index(grade.upcase)
+    valid_grades.first(index + 1)
+  end
+
+  def valid_grades
+    Inspection::VALID_GRADES
   end
 
   # DEFINE TABLES #
