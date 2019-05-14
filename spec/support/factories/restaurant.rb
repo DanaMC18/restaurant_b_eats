@@ -5,7 +5,7 @@ FactoryGirl.define do
     cuisine
     building_number "1"
     street "Tent"
-    boro "Manhattan"
+    boro "MANHATTAN"
     zipcode 12345
     phone_number 2121234567
   end

@@ -7,18 +7,14 @@ class Restaurant < ActiveRecord::Base
     :building_number, :street, :boro, :zipcode, :phone_number
 
   validates_inclusion_of :boro,
-    in: %w[Brooklyn Bronx Manhattan Queens Staten\ Island].map(&:upcase)
+    in: %w[Brooklyn Bronx Manhattan Queens Staten\ Island].map(&:upcase),
+    allow_blank: true
 
   validates_length_of :camis, maximum: 8
   validates_length_of :phone_number, maximum: 10
 
   def city_address
     "#{building_number} #{street}, #{boro}, #{zipcode}"
-  end
-
-  def self.search_by_cuisine_description(cuisine_desc)
-    cuisine_ids = Cuisine.where("description like ?", "%#{cuisine_desc}%")
-    where(cuisine_id: cuisine_ids)
   end
 
 end

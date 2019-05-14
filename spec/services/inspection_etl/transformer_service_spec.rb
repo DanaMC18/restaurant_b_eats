@@ -13,14 +13,14 @@ describe InspectionEtl::TransformerService do
         "BORO"                  => restaurant.boro,
         "ZIPCODE"               => restaurant.zipcode.to_s,
         "PHONE"                 => restaurant.phone_number.to_s,
-        "INSPECTION DATE"       => inspection.inspection_date.to_s,
+        "INSPECTION DATE"       => inspection.inspection_date.strftime("%m/%d/%Y"),
         "VIOLATION CODE"        => violation.code,
         "VIOLATION DESCRIPTION" => violation.description,
         "CRITICAL FLAG"         => "NOT CRITICAL",
         "SCORE"                 => inspection.score.to_s,
         "GRADE"                 => inspection.grade,
-        "GRADE DATE"            => inspection.grade_date.to_s,
-        "RECORD DATE"           => inspection.record_date.to_s,
+        "GRADE DATE"            => inspection.grade_date.strftime("%m/%d/%Y"),
+        "RECORD DATE"           => inspection.record_date.strftime("%m/%d/%Y"),
         "INSPECTION TYPE"       => inspection.inspection_type.description
       }
 
@@ -44,14 +44,14 @@ describe InspectionEtl::TransformerService do
           "BORO"                  => restaurant.boro,
           "ZIPCODE"               => restaurant.zipcode.to_s,
           "PHONE"                 => restaurant.phone_number.to_s,
-          "INSPECTION DATE"       => inspection.inspection_date.to_s,
+          "INSPECTION DATE"       => inspection.inspection_date.strftime("%m/%d/%Y"),
           "VIOLATION CODE"        => "",
           "VIOLATION DESCRIPTION" => "",
           "CRITICAL FLAG"         => "",
           "SCORE"                 => inspection.score.to_s,
           "GRADE"                 => inspection.grade,
-          "GRADE DATE"            => inspection.grade_date.to_s,
-          "RECORD DATE"           => inspection.record_date.to_s,
+          "GRADE DATE"            => inspection.grade_date.strftime("%m/%d/%Y"),
+          "RECORD DATE"           => inspection.record_date.strftime("%m/%d/%Y"),
           "INSPECTION TYPE"       => inspection.inspection_type.description
         }
 

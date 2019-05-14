@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190512231356) do
+ActiveRecord::Schema.define(version: 20190514012059) do
 
   create_table "cuisines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "description"
@@ -51,18 +51,22 @@ ActiveRecord::Schema.define(version: 20190512231356) do
   end
 
   create_table "restaurants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "camis",           null: false
-    t.string   "dba",             null: false
-    t.integer  "cuisine_id",      null: false
-    t.string   "building_number", null: false
-    t.string   "street",          null: false
-    t.string   "boro",            null: false
-    t.string   "zipcode",         null: false
-    t.string   "phone_number",    null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "camis",              null: false
+    t.string   "dba",                null: false
+    t.integer  "cuisine_id",         null: false
+    t.string   "building_number",    null: false
+    t.string   "street",             null: false
+    t.string   "boro",               null: false
+    t.string   "zipcode",            null: false
+    t.string   "phone_number",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "current_grade"
+    t.date     "current_grade_date"
     t.index ["camis"], name: "index_restaurants_on_camis", using: :btree
     t.index ["cuisine_id"], name: "index_restaurants_on_cuisine_id", using: :btree
+    t.index ["current_grade"], name: "index_restaurants_on_current_grade", using: :btree
+    t.index ["current_grade_date"], name: "index_restaurants_on_current_grade_date", using: :btree
     t.index ["dba"], name: "index_restaurants_on_dba", using: :btree
   end
 

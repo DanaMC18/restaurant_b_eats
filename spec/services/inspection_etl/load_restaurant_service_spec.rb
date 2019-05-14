@@ -10,7 +10,7 @@ describe InspectionEtl::LoadRestaurantService do
           cuisine_desc:     cuisine.description,
           building_number:  "123",
           street:           "Perfectly Prooved Way",
-          boro:             "Manhattan",
+          boro:             "MANHATTAN",
           zipcode:          "12345",
           phone_number:     "2129876543"
         }
