@@ -14,7 +14,7 @@ class Inspection < ActiveRecord::Base
   end
 
   def update_restaurant_current_grade
-    return unless restaurant.current_grade && restaurant.current_grade_date >= grade_date
+    return unless restaurant.current_grade.nil? || grade_date <= restaurant.current_grade_date
 
     restaurant.update_attributes(current_grade: grade, current_grade_date: grade_date)
   end
