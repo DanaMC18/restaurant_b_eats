@@ -4,17 +4,14 @@ class Api::RestaurantsController < ApplicationController
   # PARAMS: params[:cuisine]  = name of cuisine
   #         params[:grade]    = restaurant grade
   def index
-    @cuisine      = params[:cuisine].try(:strip!)
-    @restaurants  = search_by_cuisine(@cuisine)
+    cuisine       = params[:cuisine].try(:strip)
+    grade         = params[:grade].try(:strip)
+    @restaurants  = search_by_cuisine_and_grade(cuisine, grade)
   end
 
   private
 
-  def search_by_cuisine
-    return [] unless 
-    Restaurant.search_by_cuisine_description(@cuisine)
-  end
-
-  def search_by_latest_inspection_grade
+  def search_by_cuisine_and_grade(cuisine, grade)
+    Builders::RestaurantQueries::SearchBuilder.search(cuisine, grade)
   end
 end
