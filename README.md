@@ -21,22 +21,22 @@ The end goal of this challenge was to provide an API endpoint that returns a lis
 
 It was assumed that the results should include any restaurant with the specified Grade or better.
 
- The list of restaurants is returned as JSON.
-
-### Using the Search
+#### Using the Search
 To `GET` a list of restaurants, a user can CURL against the following endpoint `https://restaurant-b-eats.herokuapp.com/api/restaurants/search?cuisine=CUISINE_TYPE&grade=GRADE` like so
 ```
 $ curl https://restaurant-b-eats.herokuapp.com/api/restaurants/search?cuisine=pizza&grade=A
 ```
 
-In addition to using CURL, a user can also visit the above URL in their browser.
+In addition to using CURL, a user can also visit the above [URL](https://restaurant-b-eats.herokuapp.com/api/restaurants/search?cuisine=pizza&grade=A) in their browser.
 
-### The Code
+Both `cuisine` and `grade` are optional parameters.
+
+#### The Code
 Code related to the above endpoint starts at the [controller action](https://github.com/DanaMC18/restaurant_b_eats/blob/master/app/controllers/api/restaurants_controller.rb).
 
 The controller calls upon a [builder service](https://github.com/DanaMC18/restaurant_b_eats/blob/master/app/services/builders/restaurants/by_cuisine_and_min_grade_builder.rb) where the SQL Query for searching is written using `ActiveRecord / Arel`.
 
-When the `Api::RestaurantsController#search` receives results from the `Builders::Restaurants::ByCuisineAndMinGradeBuilder`, it serializes the data before rendering the results as JSON.
+When the controller action receives results from the query builder, it serializes the restaurant data before rendering results in JSON.
 
 ## Tests
-The [spec folder](https://github.com/DanaMC18/restaurant_b_eats/tree/master/spec) includes rspec tests for the ETL Services, the query builder, and the Api Controller.
+The [spec folder](https://github.com/DanaMC18/restaurant_b_eats/tree/master/spec) includes rspec tests for the ETL Services, the query builder, and the API Controller.
