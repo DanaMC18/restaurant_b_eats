@@ -3,8 +3,7 @@ class Restaurant < ActiveRecord::Base
   has_many :inspections
   has_many :violations, through: :inspections
 
-  validates_presence_of :camis, :cuisine_id, :dba,
-    :building_number, :street, :boro, :zipcode, :phone_number
+  validates_presence_of :camis, :cuisine_id, :dba
 
   validates_inclusion_of :boro,
     in: %w[Brooklyn Bronx Manhattan Queens Staten\ Island].map(&:upcase),
