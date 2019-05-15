@@ -29,7 +29,7 @@ $ curl https://restaurant-b-eats.herokuapp.com/api/restaurants/search?cuisine=pi
 
 In addition to using CURL, a user can also visit the above [URL](https://restaurant-b-eats.herokuapp.com/api/restaurants/search?cuisine=pizza&grade=A) in their browser.
 
-Both `cuisine` and `grade` are optional parameters.
+Both `cuisine` and `grade` are optional parameters. But regardless, only restaurants *with* grades will be returned.
 
 #### The Code
 Code related to the above endpoint starts at the [controller action](https://github.com/DanaMC18/restaurant_b_eats/blob/master/app/controllers/api/restaurants_controller.rb).

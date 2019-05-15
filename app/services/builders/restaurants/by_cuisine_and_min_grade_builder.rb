@@ -19,8 +19,8 @@ class Builders::Restaurants::ByCuisineAndMinGradeBuilder
 
   def search
     Restaurant.joins(:cuisine)
-              .where(cuisines_table[:description].matches("%#{cuisine_desc}%"))
-              .where(restaurants_table[:current_grade].in(grades_greater_than_or_equal))
+              .where(cuisines_table[:description].matches("%#{cuisine_desc}%")
+                .and(restaurants_table[:current_grade].in(grades_greater_than_or_equal)))
   end
 
   private
@@ -40,10 +40,6 @@ class Builders::Restaurants::ByCuisineAndMinGradeBuilder
 
   def cuisines_table
     Cuisine.arel_table
-  end
-
-  def inspections_table
-    Inspections.arel_table
   end
 
   def restaurants_table
