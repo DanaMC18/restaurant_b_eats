@@ -27,3 +27,4 @@ test:
 production:
   <<: *default
   database: restaurant_b_eats_prod
+  url: <%= ENV['DATABASE_URL'] %>
