@@ -8,5 +8,7 @@ FactoryGirl.define do
     boro "MANHATTAN"
     zipcode 12345
     phone_number 2121234567
+    current_grade "A"
+    current_grade_date Date.today - 1.month
   end
 end
